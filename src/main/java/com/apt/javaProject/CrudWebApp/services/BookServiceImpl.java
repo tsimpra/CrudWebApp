@@ -4,7 +4,6 @@ import com.apt.javaProject.CrudWebApp.domains.Book;
 import com.apt.javaProject.CrudWebApp.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -36,5 +35,11 @@ public class BookServiceImpl implements BookService{
         originalBook.setAuthor(book.getAuthor());
         originalBook.setIsdn(book.getIsdn());
         return bookRepository.save(originalBook);
+    }
+
+    @Override
+    public void deleteBookWithId(long id) {
+        Book originalBook = bookRepository.findById(id).get();
+        bookRepository.delete(originalBook);
     }
 }
